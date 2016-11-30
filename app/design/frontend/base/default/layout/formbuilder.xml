@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Phxsolution Formbuilder
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the Open Software License (OSL 3.0)
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://opensource.org/licenses/osl-3.0.php
+* If you did not receive a copy of the license and are unable to
+* obtain it through the world-wide-web, please send an email
+* to license@magentocommerce.com so you can be sent a copy immediately.
+*
+* Original code copyright (c) 2008 Irubin Consulting Inc. DBA Varien
+*
+* @category   frontend layout
+* @package    Phxsolution_Formbuilder
+* @author     Murad Ali
+* @contact    contact@phxsolution.com
+* @site       www.phxsolution.com
+* @copyright  Copyright (c) 2014 Phxsolution Formbuilder
+* @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+*/
+-->
+<layout version="0.3.1">
+	<default translate="label" module="formbuilder">
+		<reference name="head">
+            <action method="addCss">
+                <stylesheet>css/formbuilder/custom.css</stylesheet>
+            </action>
+        </reference>
+        <reference name="head">
+            <action method="addItem"><type>js_css</type><name>calendar/calendar-win2k-1.css</name><params/><!--<if/><condition>can_load_calendar_js</condition>--></action>        
+            <action method="addItem"><type>js</type><name>calendar/calendar.js</name><!--<params/><if/><condition>can_load_calendar_js</condition>--></action>             
+            <action method="addItem"><type>js</type><name>calendar/calendar-setup.js</name><!--<params/><if/><condition>can_load_calendar_js</condition>--></action>
+        </reference>
+        <reference name="content">
+            <block type="core/html_calendar" name="html_calendar" as="html_calendar" template="page/js/calendar.phtml" />
+        </reference>
+        <reference name="top.links">
+			<action method="addLink" translate="label title" module="formbuilder" ifconfig="formbuilder_section/general/in_toplinks">
+                <label>Formbuilder</label>
+                <url>formbuilder</url>
+                <title>Formbuilder</title>
+                <prepare>true</prepare>
+                <urlParams/>
+                <position>200</position>
+                <liParams/><aParams/>
+            </action>
+		</reference>
+        <reference name="footer_links">
+            <action method="addLink" translate="label title" module="formbuilder" ifconfig="formbuilder_section/general/in_footerlinks">
+                <label>Formbuilder</label>
+                <url>formbuilder</url>
+                <title>Formbuilder</title>
+                <prepare>true</prepare>
+            </action>
+        </reference>
+	</default>
+    <formbuilder_index_index>
+    	<reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        
+        
+        
+        <reference name="content">
+        <block type="formbuilder/frontend_formbuilder" name="frontend_formbuilder" template="formbuilder/formbuilder.phtml" />
+        </reference>
+    </formbuilder_index_index>
+    <formbuilder_index_view>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>        
+        <reference name="content">
+            <block type="formbuilder/frontend_form" name="frontend_form" template="formbuilder/form.phtml" />
+        </reference>
+    </formbuilder_index_view>
+</layout>

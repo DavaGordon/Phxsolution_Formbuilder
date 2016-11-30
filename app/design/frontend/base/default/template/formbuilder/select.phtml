@@ -1,0 +1,82 @@
+<?php
+/*
+/**
+* Phxsolution Formbuilder
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the Open Software License (OSL 3.0)
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://opensource.org/licenses/osl-3.0.php
+* If you did not receive a copy of the license and are unable to
+* obtain it through the world-wide-web, please send an email
+* to license@magentocommerce.com so you can be sent a copy immediately.
+*
+* Original code copyright (c) 2008 Irubin Consulting Inc. DBA Varien
+*
+* @category   frontend template
+* @package    Phxsolution_Formbuilder
+* @author     Murad Ali
+* @contact    contact@phxsolution.com
+* @site       www.phxsolution.com
+* @copyright  Copyright (c) 2014 Phxsolution Formbuilder
+* @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+*/
+?>
+<?php
+    $title = $this->field['title'];
+    $id = $this->field['fields_index'];
+    $isRequire = $this->field['is_require'];
+    $defaultValue = $this->field['default_value'];
+    $type = $this->field['type'];
+    
+    $labelHtml = '<label for="">'.$title.'</label>';
+    if($isRequire)
+        $labelHtml = '<label class="required" for=""><em>*</em>'.$title.'</label>';
+?>
+<li>
+    <?php echo $labelHtml; ?>
+    <div class="input-box">
+        <?php echo $this->getSelectHtml($this->field); ?>
+        <?php if ($isRequire): ?>
+            <?php if ($type == 'radio' || $type == 'checkbox'): ?>
+                <span id="options-<?php echo $id ?>-container"></span>
+            <?php endif; ?>
+        <?php endif;?>
+    </div>    
+</li>
+
+
+
+
+
+<?php /*if($this->field['type']=='field'): ?>
+    <li>
+        <?php echo $labelHtml; ?>
+        <div class="input-box">
+            <input type="text" class="input-text<?php echo $isRequire ? ' required-entry' : '' ?> <?php echo $maxCharacters ? ' validate-length maximum-length-'.$maxCharacters : '' ?> product-custom-option" title="<?php echo $title; ?>" id="options_<?php echo $id ?>_text" name="options[<?php echo $id ?>]" value="<?php echo $defaultValue ?>" />
+        </div>
+    </li>
+<?php elseif($this->field['type']=='area'): ?>
+    <li class="wide">
+        <?php echo $labelHtml; ?>
+        <div class="input-box">
+            <textarea rows="5" cols="25" class="input-text<?php echo $isRequire ? ' required-entry' : '' ?> <?php echo $maxCharacters ? ' validate-length maximum-length-'.$maxCharacters : '' ?> product-custom-option" title="<?php echo $title; ?>" id="options_<?php echo $id ?>_text" name="options[<?php echo $id ?>]"><?php echo $defaultValue ?></textarea>
+        </div>
+    </li>
+<?php endif; ?>
+
+<?php $_option = $this->getOption() ?>
+<dt><label<?php if ($_option->getIsRequire()) echo ' class="required"' ?>><?php if ($_option->getIsRequire()) echo '<em>*</em>' ?><?php echo  $this->escapeHtml($_option->getTitle()) ?></label></dt>
+<dd<?php if ($_option->decoratedIsLast){?> class="last"<?php }?>>
+    <div class="input-box">
+        <?php echo $this->getValuesHtml() ?>
+        <?php if ($_option->getIsRequire()): ?>
+            <?php if ($_option->getType() == Mage_Catalog_Model_Product_Option::OPTION_TYPE_RADIO || $_option->getType() == Mage_Catalog_Model_Product_Option::OPTION_TYPE_CHECKBOX): ?>
+                <span id="options-<?php echo $_option->getId() ?>-container"></span>
+            <?php endif; ?>
+        <?php endif;?>
+    </div>
+</dd>
+*/ ?>

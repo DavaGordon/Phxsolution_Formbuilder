@@ -1,0 +1,290 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Phxsolution Formbuilder
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the Open Software License (OSL 3.0)
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://opensource.org/licenses/osl-3.0.php
+* If you did not receive a copy of the license and are unable to
+* obtain it through the world-wide-web, please send an email
+* to license@magentocommerce.com so you can be sent a copy immediately.
+*
+* Original code copyright (c) 2008 Irubin Consulting Inc. DBA Varien
+*
+* @category   module system configuration
+* @package    Phxsolution_Formbuilder
+* @author     Murad Ali
+* @contact    contact@phxsolution.com
+* @site       www.phxsolution.com
+* @copyright  Copyright (c) 2014 Phxsolution Formbuilder
+* @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+*/
+-->
+<config>
+    <tabs>
+		<formbuilder_tab translate="label" module="formbuilder">
+			<label>Phxsolution Extensions</label>
+			<sort_order>0</sort_order>
+		</formbuilder_tab>
+    </tabs>
+	<sections>
+       <formbuilder_section>
+			<label>Formbuilder</label>
+            <tab>formbuilder_tab</tab>
+            <!-- <class>phxsolution-formbuilder</class> -->
+            <frontend_type>text</frontend_type>
+            <sort_order>150</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+			<groups>
+				<general translate="label">
+					<label>General Settings</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>11</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<!-- <expanded>1</expanded> -->
+					<fields>
+						<active translate="label">
+							<label>Enable Formbuilder</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</active>
+					</fields>
+					<fields>
+						<in_toplinks translate="label">
+							<label>Display Extension Link in Toplinks</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</in_toplinks>
+					</fields>
+					<fields>
+						<in_topmenu translate="label">
+							<label>Display Extension Link in Topmenu</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</in_topmenu>
+					</fields>
+					<fields>
+						<in_footerlinks translate="label">
+							<label>Display Extension Link in Footerlinks</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</in_footerlinks>
+					</fields>					
+				</general>
+				<form_submission translate="label">
+                    <label>Frontend - Form Submission Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>12</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+						<registered_only translate="label">
+							<label>Registered customers only</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<comment>Set form submission facility only for registered customers.</comment>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</registered_only>
+					</fields>
+					<fields>
+						<limit_form_submission_for_guest translate="label">
+							<label>Limit form submission for Guest user</label>
+							<frontend_type>text</frontend_type>
+							<comment>Limit form submission per customer. Customers are identified by IP Address (Guest user), Blank will take unlimited.</comment>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<validate>validate-zero-or-greater</validate>
+						</limit_form_submission_for_guest>
+						<limit_form_submission_for_registered translate="label">
+							<label>Limit form submission for Registered user</label>
+							<frontend_type>text</frontend_type>
+							<comment>Limit form submission per customer. Customers are identified by Customer Id (Registered user), Blank will take unlimited.</comment>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<validate>validate-zero-or-greater</validate>
+						</limit_form_submission_for_registered>
+					</fields>
+					<fields>
+						<redirect_url translate="label">
+							<label>Redirect URL</label>
+							<frontend_type>text</frontend_type>
+							<comment>Redirect customer to specified URL after successful form submission. Example: customer/account or home or customer-service. (URL added here will be added to base url)</comment>
+							<sort_order>7</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<width>500</width>
+							<!-- <validate>validate-url</validate> -->
+						</redirect_url>
+					</fields>					
+                </form_submission>
+                <form_submission_email translate="label">
+                    <label>Frontend - Form Submission Email Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>13</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <sender_name translate="label">
+							<label>Sender Name</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</sender_name>
+                        <sender_email translate="label">
+							<label>Sender Email</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</sender_email>
+                        <send_email_to_customer translate="label">
+							<label>Send Email to Customer?</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>11</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</send_email_to_customer>
+                        <email_subject_for_customer translate="label">
+							<label>Email Subject for Customer</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>12</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</email_subject_for_customer>
+						<email_content_for_customer translate="label">
+							<label>Email content for Customer</label>
+							<frontend_type>textarea</frontend_type>
+							<sort_order>13</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment><![CDATA[Please do not change variables: {{Name}},{{FormData}},{{Storename}} & {{Storephone}}, if you don't want any variable then simply remove it from content.]]> </comment>
+						</email_content_for_customer>
+						<send_email_to_admin translate="label">
+							<label>Send Email to Admin?</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>14</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</send_email_to_admin>
+						<admin_email translate="label">
+							<label>Admin Email</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>15</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</admin_email>
+						<email_subject_for_admin translate="label">
+							<label>Email Subject for Admin</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>16</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</email_subject_for_admin>
+						<email_content_for_admin translate="label">
+							<label>Email content for Admin</label>
+							<frontend_type>textarea</frontend_type>
+							<sort_order>17</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment><![CDATA[Please do not change variables: {{CustomerEmail}},{{Storename}} & {{FormData}}, if you don't want any variable then simply remove it from content.]]> </comment>
+						</email_content_for_admin>
+					</fields>
+				</form_submission_email>
+				<custom_options translate="label">
+                    <label>Frontend - Date &amp; Time Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>18</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <use_calendar translate="label">
+                            <label>Use JavaScript Calendar</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </use_calendar>
+                        <date_fields_order translate="label">
+                            <label>Date Fields Order</label>
+                            <frontend_type>select</frontend_type>
+                            <frontend_model>adminhtml/catalog_form_renderer_config_dateFieldsOrder</frontend_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><use_calendar>0</use_calendar></depends>
+                        </date_fields_order>
+                        <time_format translate="label">
+                            <label>Time Format</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_catalog_timeFormat</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </time_format>
+                        <year_range translate="label comment">
+                            <label>Year Range</label>
+                            <comment>Use four-digit year format.</comment>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>adminhtml/catalog_form_renderer_config_yearRange</frontend_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </year_range>
+                    </fields>
+                </custom_options>
+			</groups>
+		</formbuilder_section>		
+    </sections>
+</config>

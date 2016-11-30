@@ -1,0 +1,56 @@
+<?php
+/*
+/**
+* Phxsolution Formbuilder
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the Open Software License (OSL 3.0)
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://opensource.org/licenses/osl-3.0.php
+* If you did not receive a copy of the license and are unable to
+* obtain it through the world-wide-web, please send an email
+* to license@magentocommerce.com so you can be sent a copy immediately.
+*
+* Original code copyright (c) 2008 Irubin Consulting Inc. DBA Varien
+*
+* @category   frontend template
+* @package    Phxsolution_Formbuilder
+* @author     Murad Ali
+* @contact    contact@phxsolution.com
+* @site       www.phxsolution.com
+* @copyright  Copyright (c) 2014 Phxsolution Formbuilder
+* @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+*/
+?>
+<?php
+    $title = $this->field['title'];
+    $id = $this->field['fields_index'];
+    $isRequire = $this->field['is_require'];
+    $maxCharacters = $this->field['max_characters'];
+    $defaultValue = $this->getDefaultValue();
+    $liClass = "";
+    if($this->field['type']=='area')
+        $liClass = "wide";
+    
+    $labelHtml = '<label for="">'.$title.'</label>';
+    if($isRequire)
+        $labelHtml = '<label class="required" for=""><em>*</em>'.$title.'</label>';
+?>
+<li class="<?php echo $liClass ?>">
+    <?php echo $labelHtml; ?>
+    <div class="input-box">
+        <?php if($this->field['type']=='field'): ?>
+            <input type="text" class="input-text<?php echo $isRequire ? ' required-entry' : '' ?> <?php echo $maxCharacters ? ' validate-length maximum-length-'.$maxCharacters : '' ?> product-custom-option" title="<?php echo $title; ?>" id="options_<?php echo $id ?>_text" name="options[<?php echo $id ?>]" value="<?php echo $defaultValue ?>" />
+        <?php elseif($this->field['type']=='area'): ?>    
+            <textarea rows="5" cols="25" class="input-text<?php echo $isRequire ? ' required-entry' : '' ?> <?php echo $maxCharacters ? ' validate-length maximum-length-'.$maxCharacters : '' ?> product-custom-option" title="<?php echo $title; ?>" id="options_<?php echo $id ?>_text" name="options[<?php echo $id ?>]"><?php echo $defaultValue ?></textarea>
+        <?php endif; ?>
+        <?php if ($maxCharacters): ?>
+            <p class="note">
+                <?php echo Mage::helper('formbuilder')->__('Maximum number of characters:')?>
+                <strong><?php echo $maxCharacters ?></strong>
+            </p>
+        <?php endif; ?>
+    </div>
+</li>

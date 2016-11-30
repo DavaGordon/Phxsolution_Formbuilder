@@ -1,0 +1,299 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Phxsolution Formbuilder
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the Open Software License (OSL 3.0)
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://opensource.org/licenses/osl-3.0.php
+* If you did not receive a copy of the license and are unable to
+* obtain it through the world-wide-web, please send an email
+* to license@magentocommerce.com so you can be sent a copy immediately.
+*
+* Original code copyright (c) 2008 Irubin Consulting Inc. DBA Varien
+*
+* @category   module configuration
+* @package    Phxsolution_Formbuilder
+* @author     murad.magento
+* @contact    contact@phxsolution.com
+* @site       www.phxsolution.com
+* @copyright  Copyright (c) 2014 Phxsolution Formbuilder
+* @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+*/
+-->
+<config>
+    <modules>
+        <Phxsolution_Formbuilder>
+            <version>0.3.2</version>
+        </Phxsolution_Formbuilder>
+    </modules>
+    <frontend>
+        <routers>
+            <formbuilder>
+                <use>standard</use>
+                <args>
+                    <module>Phxsolution_Formbuilder</module>
+                    <frontName>formbuilder</frontName>
+                </args>
+            </formbuilder>
+        </routers>
+        <layout>
+            <updates>
+				<formbuilder module="Phxsolution_Formbuilder">
+                    <file>formbuilder.xml</file>
+                </formbuilder>
+            </updates>
+        </layout>
+        <events>
+            <page_block_html_topmenu_gethtml_before>
+                <observers>
+                    <formbuilder>
+                        <class>formbuilder/observer</class>
+                        <method>addToTopmenu</method>
+                    </formbuilder>
+                </observers>
+            </page_block_html_topmenu_gethtml_before>
+        </events>
+        <!-- <translate>
+            <modules>
+                <Phxsolution_Formbuilder>
+                    <files>
+                        <default>Phxsolution_Formbuilder.csv</default>
+                    </files>
+                </Phxsolution_Formbuilder>
+            </modules>
+        </translate> -->
+		<!-- <events>
+           <core_block_abstract_prepare_layout_before>
+               <observers>
+                   <nextbits_jquery_prepare_layout_before>
+                       <class>formbuilder/observer</class>
+                       <method>prepareLayoutBefore</method>
+                   </nextbits_jquery_prepare_layout_before>
+               </observers>
+           </core_block_abstract_prepare_layout_before>
+       </events> -->
+    </frontend>
+    <admin>
+        <routers>
+			<formbuilder>
+				<use>admin</use>
+				<args>
+					<module>Phxsolution_Formbuilder</module>
+					<frontName>formbuilder</frontName>
+				</args>
+			</formbuilder>
+        </routers>
+    </admin>
+    <adminhtml>
+		<menu>
+			<formbuilder module="formbuilder">
+				<depends>
+                    <config>formbuilder_section/general/active</config>
+                </depends>
+                <title>Form Builder</title>
+				<sort_order>71</sort_order>               
+				<children>
+					<items module="formbuilder">
+						<title>Manage Forms</title>
+						<sort_order>0</sort_order>
+						<action>formbuilder/adminhtml_formbuilder</action>
+					</items>
+					<items2 module="formbuilder">
+						<title>Add Form</title>
+						<sort_order>1</sort_order>
+						<action>formbuilder/adminhtml_formbuilder/new</action>
+					</items2>
+                    <items3 module="formbuilder">
+                        <title>Formbuilder Settings</title>
+                        <sort_order>2</sort_order>
+                        <action>adminhtml/system_config/edit/section/formbuilder_section</action>
+                    </items3>
+                    <!-- <items4 module="formbuilder">
+                        <title>Form with Results</title>
+                        <sort_order>3</sort_order>
+                        <action>adminhtml/system_config/edit/section/formbuilder_section</action>
+                    </items4> -->
+                </children>
+			</formbuilder>
+		</menu>
+		<acl>
+			<resources>
+				<all>
+					<title>Allow Everything</title>
+				</all>
+				<admin>
+					<children>
+                        <formbuilder module="formbuilder">
+							<title>Phxsolution</title>
+							<sort_order>71</sort_order>               
+							<children>
+								<items module="formbuilder">
+									<title>Manage Forms</title>
+									<sort_order>0</sort_order>
+									<action>formbuilder/adminhtml_formbuilder</action>
+								</items>
+								<items2 module="formbuilder">
+									<title>Add Form</title>
+									<sort_order>1</sort_order>
+									<action>formbuilder/adminhtml_formbuilder/new</action>
+								</items2>
+                                <items3 module="formbuilder">
+                                    <title>Formbuilder Settings</title>
+                                    <sort_order>2</sort_order>
+                                    <action>adminhtml/system_config/edit/section/formbuilder_section</action>
+                                </items3>
+							</children>
+						</formbuilder>
+						<system>
+							<children>
+								<config>
+									<children>
+										<formbuilder_section translate="title" module="formbuilder">
+											<title>Phxsolution Formbuilder Section</title>
+										</formbuilder_section>
+									</children>
+								</config>
+							</children>
+						</system>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+		<layout>
+			<updates>
+				<formbuilder>
+					<file>formbuilder.xml</file>
+				</formbuilder>
+			</updates>
+		</layout>
+    </adminhtml>   
+    <global>
+        <models>
+            <formbuilder>
+                <class>Phxsolution_Formbuilder_Model</class>
+                <resourceModel>formbuilder_mysql4</resourceModel>
+            </formbuilder>
+            <formbuilder_mysql4>
+                <class>Phxsolution_Formbuilder_Model_Mysql4</class>
+                <entities>
+                    <forms>
+                        <table>formbuilder_forms</table>
+                    </forms>
+                    <fields>
+                        <table>formbuilder_fields</table>
+                    </fields>
+                    <options>
+                        <table>formbuilder_fields_options</table>
+                    </options>
+                    <records>
+                        <table>formbuilder_records</table>
+                    </records>
+                </entities>
+            </formbuilder_mysql4>
+        </models>
+        <resources>
+            <formbuilder_setup>
+                <setup>
+                    <module>Phxsolution_Formbuilder</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </formbuilder_setup>
+            <formbuilder_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </formbuilder_write>
+            <formbuilder_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </formbuilder_read>
+        </resources>
+        <blocks>
+            <formbuilder>
+                <class>Phxsolution_Formbuilder_Block</class>
+            </formbuilder>
+            <!-- <adminhtml>
+                <rewrite>
+                    <page_menu>Phxsolution_Formbuilder_Block_Adminhtml_Menu</page_menu>
+                </rewrite>
+            </adminhtml> -->
+            <adminhtml>
+                <rewrite>
+                    <catalog_product_edit_tab_options_type_text>Phxsolution_Formbuilder_Block_Adminhtml_Formbuilder_Edit_Tab_Options_Type_Text</catalog_product_edit_tab_options_type_text>
+                    <catalog_product_edit_tab_options_type_select>Phxsolution_Formbuilder_Block_Adminhtml_Formbuilder_Edit_Tab_Options_Type_Select</catalog_product_edit_tab_options_type_select>
+                    <catalog_product_edit_tab_options_type_file>Phxsolution_Formbuilder_Block_Adminhtml_Formbuilder_Edit_Tab_Options_Type_File</catalog_product_edit_tab_options_type_file>
+                    <catalog_product_edit_tab_options_type_date>Phxsolution_Formbuilder_Block_Adminhtml_Formbuilder_Edit_Tab_Options_Type_Date</catalog_product_edit_tab_options_type_date>
+                </rewrite>
+                
+            </adminhtml>
+            <!-- <adminhtml> -->
+                <!-- <rewrite>
+                    <catalog_product_edit_tab_options>Phxsolution_Formbuilder_Block_Adminhtml_Formbuilder_Edit_Tab_Options</catalog_product_edit_tab_options>
+                </rewrite> -->
+                <!-- <rewrite>
+                    <catalog_product_edit_tab_options_option>Phxsolution_Formbuilder_Block_Adminhtml_Formbuilder_Edit_Tab_Options_Option</catalog_product_edit_tab_options_option>
+                </rewrite> -->
+            <!-- </adminhtml> -->
+        </blocks>
+        <helpers>
+            <formbuilder>
+                <class>Phxsolution_Formbuilder_Helper</class>
+            </formbuilder>
+        </helpers>
+    </global>
+	<default>
+		<formbuilder_section>
+			<general>
+				<active>1</active>
+			</general>
+            <form_submission_email>
+                <sender_name>Storename - Support Team</sender_name>
+            </form_submission_email>
+            <form_submission_email>
+                <sender_email>support@storename.com</sender_email>
+            </form_submission_email>
+            <form_submission_email>
+                <send_email_to_customer>1</send_email_to_customer>
+            </form_submission_email>
+            <form_submission_email>
+                <send_email_to_admin>1</send_email_to_admin>
+            </form_submission_email>
+            <form_submission_email>
+                <admin_email>admin-name@storename.com</admin_email>
+            </form_submission_email>
+            <form_submission_email>
+                <email_subject_for_customer>Thank you for contacting us</email_subject_for_customer>
+            </form_submission_email>
+            <form_submission_email>
+                <email_content_for_customer>&lt;h2&gt;Hello {{Name}}, &lt;/h2&gt;&lt;br&gt;&lt;br&gt;Thank you for contacting us. A company representative will contact you with more information within two business days.&lt;br&gt;&lt;br&gt;{{FormData}}&lt;br&gt;&lt;br&gt;Thank You,&lt;br&gt;{{Storename}}&lt;br&gt;Phone: {{Storephone}}</email_content_for_customer>
+            </form_submission_email>
+            <form_submission_email>
+                <email_subject_for_admin>Contact request received</email_subject_for_admin>
+            </form_submission_email>
+            <form_submission_email>
+                <email_content_for_admin>&lt;h2&gt;Hello Admin, &lt;/h2&gt;&lt;br&gt;&lt;br&gt;Have a look at the form submission by customer "{{CustomerEmail}}" from the store "{{Storename}}"&lt;br&gt;&lt;br&gt;{{FormData}}</email_content_for_admin>
+            </form_submission_email>
+            <custom_options>
+                <use_calendar>1</use_calendar>
+            </custom_options>
+		</formbuilder_section>
+	 </default>
+	 <adminhtml>
+        <translate>
+            <modules>
+                <Phxsolution_Formbuilder>
+                    <files>
+                        <default>Phxsolution_Formbuilder.csv</default>
+                    </files>
+                </Phxsolution_Formbuilder>
+            </modules>
+        </translate>
+	</adminhtml>	
+</config>
