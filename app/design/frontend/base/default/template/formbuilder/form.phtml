@@ -70,8 +70,8 @@ if ($helper->isEnabled()): ?>
 						</div>
 					<?php endif; ?>
 					<form method="post" id="custom_form" action="<?php echo $formRedirectUrl ?>" name="custom_form" enctype="multipart/form-data">
-					    <div class="fieldset">
-					        <h2 class="legend">
+					    <div class="form-container">
+					        <h2 class="form-title">
 					        	<?php echo $currentForm->getFormTitle(); ?>
 					        </h2>
 					        <?php if($currentForm['header_content']): ?>
@@ -79,15 +79,18 @@ if ($helper->isEnabled()): ?>
 								    <?php echo $currentForm['header_content']; ?>
 								</div>
 							<?php endif; ?>
-					        <ul class="form-list product-options">
-					        	<?php
-					        		foreach ($currentFormFieldsCollection as $key => $field)
-					        		{
-										$functionName = "get".ucfirst($field['previous_group'])."Html";
-					        			echo $this->$functionName($field);
-					        		}
+					        <div class="form-list product-options">
+								<?php
+								foreach ($currentFormFieldsCollection as $key => $field) {
+									if ($field['type'] == "colstart" || $field['type'] == "colend" || $field['type'] == "containerstart" || $field['type'] == "containerend") {
+										$functionName = "get" . ucfirst($field['type']) . "Html";
+									} else {
+										$functionName = "get" . ucfirst($field['previous_group']) . "Html";
+									}
+									echo $this->$functionName($field);
+								}
 								?>
-					        </ul>
+					        </div>
 					        <?php if($currentForm['footer_content']): ?>
 								<div class="footer_content">
 								    <?php echo $currentForm['footer_content']; ?>

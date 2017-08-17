@@ -25,29 +25,16 @@
 */
 ?>
 <?php
-$title = $this->field['title'];
-$id = $this->field['fields_index'];
-$isRequire = $this->field['is_require'];
-$defaultValue = $this->field['default_value'];
-$type = $this->field['type'];
-if(!empty($this->field['cssclass'])) {
-    $cssclass = ' class="' . $this->field['cssclass'] . '"';
-}else{
-    $cssclass = '';
-}
-
-$labelHtml = '<label for="">'.$title.'</label>';
-if($isRequire)
-    $labelHtml = '<label class="required" for=""><em>*</em>'.$title.'</label>';
+    $title = $this->field['title'];
+    $id = $this->field['fields_index'];
+    $isRequire = $this->field['is_require'];
+    $maxCharacters = $this->field['max_characters'];
+    $defaultValue = $this->getDefaultValue();
+    if(!empty($this->field['cssclass'])) {
+        $cssclass = ' class="' . $this->field['cssclass'] . '"';
+    }else{
+        $cssclass = '';
+    }
 ?>
 <div<?php echo $cssclass; ?>>
-    <?php echo $labelHtml; ?>
-    <div class="input-box">
-        <?php echo $this->getSelectHtml($this->field); ?>
-        <?php if ($isRequire): ?>
-            <?php if ($type == 'radio' || $type == 'checkbox'): ?>
-                <span id="options-<?php echo $id ?>-container"></span>
-            <?php endif; ?>
-        <?php endif;?>
-    </div>
-</div>
+

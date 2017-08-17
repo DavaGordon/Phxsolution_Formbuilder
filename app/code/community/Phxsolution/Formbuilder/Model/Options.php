@@ -102,6 +102,7 @@ class Phxsolution_Formbuilder_Model_Options extends Mage_Core_Model_Abstract
         $data['is_delete'] = $optionsArrayItem['is_delete'];
         $data['title'] = $optionsArrayItem['title'];
         $data['sort_order'] = $optionsArrayItem['sort_order'];
+        $data['cssclass'] = $optionsArrayItem['cssclass'];
         $data['option_id'] = $optionId;
         $optionsModel->setData($data);
         $optionsModel->save();

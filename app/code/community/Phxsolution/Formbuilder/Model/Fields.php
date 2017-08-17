@@ -157,6 +157,7 @@ class Phxsolution_Formbuilder_Model_Fields extends Mage_Core_Model_Abstract
             $data['sort_order'] = $fieldsArrayItem['sort_order'];
             $data['status'] = $fieldsArrayItem['field_status'];
             $data['is_require'] = $fieldsArrayItem['is_require'];
+            $data['cssclass'] = $fieldsArrayItem['cssclass'];
             $data['is_delete'] = $fieldsArrayItem['is_delete'];
             $data['option_id'] = $fieldsArrayItem['option_id'];
             $data['previous_type'] = $fieldsArrayItem['previous_type'];
@@ -213,6 +214,7 @@ class Phxsolution_Formbuilder_Model_Fields extends Mage_Core_Model_Abstract
         $data['is_delete'] = $fieldsArrayItem['is_delete'];
         $data['option_id'] = $fieldsArrayItem['option_id'];
         $data['previous_type'] = $fieldsArrayItem['previous_type'];
+        $data['cssclass'] = $fieldsArrayItem['cssclass'];
 
         if($fieldsArrayItem['previous_group']=='text')
             $data['max_characters'] = $fieldsArrayItem['max_characters'];

@@ -127,6 +127,7 @@ class Phxsolution_Formbuilder_Adminhtml_FormbuilderController extends Mage_Admin
 
     public function saveAction()
     {
+
         if ($data = $this->getRequest()->getPost()) {
             $model = Mage::getModel("formbuilder/forms")->load($this->getRequest()->getParam("id"));
             $currentFormId = $this->getRequest()->getParam("id");

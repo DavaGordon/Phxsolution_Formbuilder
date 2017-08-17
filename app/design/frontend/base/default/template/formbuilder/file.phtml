@@ -56,6 +56,19 @@
 <?php $_fileNamed = $_fileName . '_name'; ?>
 <?php $_rand = rand(); ?>
 <?php $id = $_option['fields_index']; ?>
+<?php 
+    if(!empty($this->field['cssclass'])) {
+        $cssclass = ' class="' . $this->field['cssclass'] . '"';
+    }elseif($this->field['type']=='area') {
+        if(!empty($this->field['cssclass'])) {
+            $cssclass = ' class="wide ' . $this->field['cssclass'] . '"';
+        }else{
+            $cssclass = ' class="wide"';
+        }
+    }else{
+        $cssclass = '';
+    }
+?>
 
 <script type="text/javascript">
 //<![CDATA[
@@ -113,7 +126,7 @@
         $labelHtml = '<label class="required" for=""><em>*</em>'.$title.'</label>';
 ?>
 
-<li>
+<div<?php echo $cssclass; ?>>
     <?php echo $labelHtml; ?>
     <?php if ($_fileExists): ?>
         <span class="<?php echo $_fileNamed ?>"><?php echo $_fileInfo->getTitle(); ?></span>
@@ -138,4 +151,4 @@
         <p class="no-margin"><?php echo Mage::helper('catalog')->__('Maximum image height')?>: <strong><?php echo $_option->getImageSizeY() ?> <?php echo Mage::helper('catalog')->__('px.')?></strong></p>
         <?php endif; ?>
     </div>
-</li>
+</div>

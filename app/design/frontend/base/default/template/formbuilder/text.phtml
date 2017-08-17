@@ -30,20 +30,29 @@
     $isRequire = $this->field['is_require'];
     $maxCharacters = $this->field['max_characters'];
     $defaultValue = $this->getDefaultValue();
-    $liClass = "";
-    if($this->field['type']=='area')
-        $liClass = "wide";
-    
+    if(!empty($this->field['cssclass'])) {
+        $cssclass = ' class="' . $this->field['cssclass'] . '"';
+    }elseif($this->field['type']=='area') {
+        if(!empty($this->field['cssclass'])) {
+            $cssclass = ' class="wide ' . $this->field['cssclass'] . '"';
+        }else{
+            $cssclass = ' class="wide"';
+        }
+    }else{
+        $cssclass = '';
+    }
+
+
     $labelHtml = '<label for="">'.$title.'</label>';
     if($isRequire)
         $labelHtml = '<label class="required" for=""><em>*</em>'.$title.'</label>';
 ?>
-<li class="<?php echo $liClass ?>">
+<div<?php echo $cssclass; ?>>
     <?php echo $labelHtml; ?>
     <div class="input-box">
         <?php if($this->field['type']=='field'): ?>
             <input type="text" class="input-text<?php echo $isRequire ? ' required-entry' : '' ?> <?php echo $maxCharacters ? ' validate-length maximum-length-'.$maxCharacters : '' ?> product-custom-option" title="<?php echo $title; ?>" id="options_<?php echo $id ?>_text" name="options[<?php echo $id ?>]" value="<?php echo $defaultValue ?>" />
-        <?php elseif($this->field['type']=='area'): ?>    
+        <?php elseif($this->field['type']=='area'): ?>
             <textarea rows="5" cols="25" class="input-text<?php echo $isRequire ? ' required-entry' : '' ?> <?php echo $maxCharacters ? ' validate-length maximum-length-'.$maxCharacters : '' ?> product-custom-option" title="<?php echo $title; ?>" id="options_<?php echo $id ?>_text" name="options[<?php echo $id ?>]"><?php echo $defaultValue ?></textarea>
         <?php endif; ?>
         <?php if ($maxCharacters): ?>
@@ -53,4 +62,4 @@
             </p>
         <?php endif; ?>
     </div>
-</li>
+</div>

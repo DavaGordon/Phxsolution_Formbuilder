@@ -81,19 +81,24 @@ class Phxsolution_Formbuilder_Block_Frontend_Select extends Mage_Core_Block_Temp
         {
         	//$require = ($_option->getIsRequire()) ? ' required-entry' : 'not-required';
             //return $require;
-            $selectHtml = '<ul id="options-'.$_option['fields_index'].'-list" class="options-list">';
+            $selectHtml = '<div id="options-'.$_option['fields_index'].'-list" class="options-list">';
             $require = ($_option->getIsRequire()) ? 'validate-one-required-by-name' : '';
             $arraySign = '';
+            if(!empty($_option['cssclass'])) {
+                $cssclass = ' class="' . $_option['cssclass'] . '"';
+            }else{
+                $cssclass = '';
+            }
             switch ($_option->getType()) {
                 case 'radio':
                     $type = 'radio';
                     $class = 'radio';
                     if (!$_option->getIsRequire())
                     {
-                        $selectHtml .= '<li><input type="radio" id="options_' . $_option['fields_index'] . '" class="'
+                        $selectHtml .= '<div'.$cssclass.'><input type="radio" id="options_' . $_option['fields_index'] . '" class="'
                             . $class . ' product-custom-option" name="options[' . $_option['fields_index'] . ']"'
                             . ' value="" checked="checked" /><span class="label"><label for="options_'
-                            . $_option['fields_index'] . '">' . $this->__('None') . '</label></span></li>';
+                            . $_option['fields_index'] . '">' . $this->__('None') . '</label></span></div>';
                     }
                     break;
                 case 'checkbox':
@@ -120,10 +125,14 @@ class Phxsolution_Formbuilder_Block_Frontend_Select extends Mage_Core_Block_Temp
                 } else {
                     $checked = $configValue == $htmlValue ? 'checked' : '';
                 }
-
+                if(!empty($_option['cssclass'])) {
+                    $cssclass = ' class="' . $_option['cssclass'] . '"';
+                }else{
+                    $cssclass = '';
+                }
                 if($lastItemId==$_value['options_index'])
                 	$classHtml .= " ".$require;
-                $selectHtml .= '<li>';
+                $selectHtml .= '<div'.$cssclass.'>';
                 $selectHtml .= '<input type="' . $type . '"';
                 $selectHtml .= ' class="' . $classHtml . '"';
                 $selectHtml .= ' name="options[' . $_option['fields_index'] . ']' . $arraySign . '"';
@@ -137,9 +146,9 @@ class Phxsolution_Formbuilder_Block_Frontend_Select extends Mage_Core_Block_Temp
                     . '$(\'options_' . $_option['fields_index'] . '_' . $count
                     . '\').callbackFunction = \'validateOptionsCallback\';' . '</script>';
                 }
-                $selectHtml .= '</li>';
+                $selectHtml .= '</div>';
             }
-            $selectHtml .= '</ul>';
+            $selectHtml .= '</div>';
 
             return $selectHtml;
         }        

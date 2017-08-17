@@ -29,12 +29,24 @@
     $id = $this->field['fields_index'];
     $isRequire = $this->field['is_require'];
     $defaultValue = $this->field['default_value'];
+    if(!empty($this->field['cssclass'])) {
+        $cssclass = ' class="' . $this->field['cssclass'] . '"';
+    }elseif($this->field['type']=='area') {
+        if(!empty($this->field['cssclass'])) {
+            $cssclass = ' class="wide ' . $this->field['cssclass'] . '"';
+        }else{
+            $cssclass = ' class="wide"';
+        }
+    }else{
+        $cssclass = '';
+    }
+
     
     $labelHtml = '<label for="">'.$title.'</label>';
     if($isRequire)
         $labelHtml = '<label class="required" for=""><em>*</em>'.$title.'</label>';
 ?>
-<li>
+<div<?php echo $cssclass; ?>>
     <?php echo $labelHtml; ?>
     <div class="input-box">
         <?php if($this->field['type']=='date_time' || $this->field['type']=='date'): ?>    
@@ -92,4 +104,4 @@
             //]]>
         </script>
     </div>
-</li>
+</div>

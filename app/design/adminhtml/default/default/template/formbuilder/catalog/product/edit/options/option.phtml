@@ -38,6 +38,7 @@ var firstStepTemplate = '<div class="option-box" id="option_{{id}}">'+
             '<thead>'+
                 '<tr>'+
                     '<th class="opt-title"><?php echo Mage::helper('catalog')->__('Title') ?> <span class="required">*</span></th>'+
+                    '<th class="opt-cssclass"><?php echo Mage::helper('catalog')->__('CSS Classes') ?></th>'+
                     '<th class="opt-type"><?php echo Mage::helper('catalog')->__('Input Type') ?> <span class="required">*</span></th>'+
                     '<th class="opt-req"><?php echo $this->jsQuoteEscape(Mage::helper('catalog')->__('Is Required')) ?></th>'+
                     '<th class="opt-req"><?php echo $this->jsQuoteEscape(Mage::helper('catalog')->__('Enable')) ?></th>'+
@@ -47,6 +48,7 @@ var firstStepTemplate = '<div class="option-box" id="option_{{id}}">'+
             '</thead>'+
             '<tr>'+
                 '<td><input type="text" class="required-entry input-text" id="<?php echo $this->getFieldId() ?>_{{id}}_title" name="<?php echo $this->getFieldName() ?>[{{id}}][title]" value="{{title}}">{{checkboxScopeTitle}}</td>'+
+                '<td><input type="text" size="1" class="input-text" id="<?php echo $this->getFieldId() ?>_{{id}}_cssclass" name="<?php echo $this->getFieldName() ?>[{{id}}][cssclass]" value="{{cssclass}}"></td>'+
                 '<td><?php echo $this->getTypeSelectHtml() ?></td>'+
                 '<td class="opt-req"><?php echo $this->getRequireSelectHtml() ?></td>'+
                 '<td class="opt-req"><?php echo $this->getStatusHtml() ?></td>'+
@@ -158,6 +160,13 @@ var productOptionType = {
                 template = OptionTemplateSelect;
                 group = 'select';
                 break;
+            case 'containerstart':
+            case 'containerend':
+            case 'colstart':
+            case 'colend':
+                template = '';
+                group = 'layout';
+                break;
             case 'date':
             case 'date_time':
             case 'time':
@@ -243,6 +252,13 @@ var productOptionType = {
             case 'multiple':
                 template = OptionTemplateSelect;
                 group = 'select';
+                break;
+            case 'containerstart':
+            case 'containerend':
+            case 'colstart':
+            case 'colend':
+                template = '';
+                group = 'layout';
                 break;
             case 'date':
             case 'date_time':

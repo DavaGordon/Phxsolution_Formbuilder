@@ -64,7 +64,7 @@ class Phxsolution_Formbuilder_Block_Adminhtml_Formbuilder_Edit_Tab_Options_Optio
         if ($form_id) {
             $model = Mage::getModel("formbuilder/fields")->getCollection();
             $model->addFieldToFilter('forms_index', $form_id);
-
+            $model->setOrder('sort_order','DESC');
             return $model;
         }
     }
@@ -73,7 +73,7 @@ class Phxsolution_Formbuilder_Block_Adminhtml_Formbuilder_Edit_Tab_Options_Optio
     {
             $model = Mage::getModel("formbuilder/options")->getCollection();
             $model->addFieldToFilter('fields_index', $option_id);
-
+            $model->setOrder('sort_order','ASC');
             return $model;
     }
 
@@ -115,13 +115,33 @@ class Phxsolution_Formbuilder_Block_Adminhtml_Formbuilder_Edit_Tab_Options_Optio
 
     public function getTypeSelectHtml()
     {
+        $defaultOptions = Mage::getSingleton('adminhtml/system_config_source_product_options_type')->toOptionArray();
+        $newOptions = array(
+            'label' => 'Layout Options',
+            'value' => array(
+                array(
+                    'label' => 'Column Start', 'value' => 'colstart',
+                ),
+                array(
+                    'label' => 'Column End', 'value' => 'colend'
+                ),
+                array(
+                    'label' => 'Container Start', 'value' => 'containerstart',
+                ),
+                array(
+                    'label' => 'Container End', 'value' => 'containerend'
+                )
+            )
+        );
+        array_push($defaultOptions, $newOptions);
+
         $select = $this->getLayout()->createBlock('adminhtml/html_select')
             ->setData(array(
                 'id' => $this->getFieldId() . '_{{id}}_type',
                 'class' => 'select select-product-option-type required-option-select'
             ))
             ->setName($this->getFieldName() . '[{{id}}][type]')
-            ->setOptions(Mage::getSingleton('adminhtml/system_config_source_product_options_type')->toOptionArray());
+            ->setOptions($defaultOptions);
 
         return $select->getHtml();
     }
@@ -201,6 +221,7 @@ class Phxsolution_Formbuilder_Block_Adminhtml_Formbuilder_Edit_Tab_Options_Optio
                     //$value2['previous_group'] = $field['previous_group'];
                     $value2['type'] = $field['type'];
                     $value2['is_require'] = $field['is_require'];
+                    $value2['cssclass'] = $field['cssclass'];
                     $value2['field_status'] = $field['status'];
                     $value2['sort_order'] = $field['sort_order'];
                     $value2['can_edit_price'] = false;

@@ -58,6 +58,38 @@ class Phxsolution_Formbuilder_Block_Frontend_Form extends Mage_Core_Block_Templa
 				->setTemplate('formbuilder/text.phtml')
 				->toHtml();
 	}
+    public function getColstartHtml($field)
+    {
+        echo $this->getLayout()
+            ->createBlock('formbuilder/frontend_colstart')
+            ->setData('field', $field)
+            ->setTemplate('formbuilder/colstart.phtml')
+            ->toHtml();
+    }
+    public function getColendHtml($field)
+    {
+        echo $this->getLayout()
+            ->createBlock('formbuilder/frontend_colend')
+            ->setData('field', $field)
+            ->setTemplate('formbuilder/colend.phtml')
+            ->toHtml();
+    }
+    public function getContainerstartHtml($field)
+    {
+        echo $this->getLayout()
+            ->createBlock('formbuilder/frontend_containerstart')
+            ->setData('field', $field)
+            ->setTemplate('formbuilder/containerstart.phtml')
+            ->toHtml();
+    }
+    public function getContainerendHtml($field)
+    {
+        echo $this->getLayout()
+            ->createBlock('formbuilder/frontend_containerend')
+            ->setData('field', $field)
+            ->setTemplate('formbuilder/containerend.phtml')
+            ->toHtml();
+    }
 	public function getSelectHtml($field)
 	{
 		echo $this->getLayout()
