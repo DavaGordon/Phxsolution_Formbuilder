@@ -8,6 +8,8 @@
 3. Removed Fields Tab
 4. Fixed Customer Fields Creator
 5. Changed Form Title (from 'title' to 'form_title'
+6. CSS Classes can now be added to all form fields
+7. Ability to add DIV wrappers around all form elements for both columns and containers also ability to add class
 
 Original Module Creator: [Hans Kuijpers](https://github.com/hans2103)
 Updated By Me: [Dava Gordon](https://github.com/DavaGordon)
