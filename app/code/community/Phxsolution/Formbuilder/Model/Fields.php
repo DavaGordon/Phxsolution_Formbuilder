@@ -86,18 +86,17 @@ class Phxsolution_Formbuilder_Model_Fields extends Mage_Core_Model_Abstract
 		$fieldsCollection = $fieldsModel->getCollection();
     	if($currentFormId)
     		$fieldsCollection->addFieldToFilter('forms_index',array('eq'=>$currentFormId));
-    	//$fieldsCollection->setOrder('field_id','asc');
         return $fieldsCollection;
     }
     public function saveFields($fieldsArray,$currentFormId=0)
     {
-        //$fieldsCollection = Mage::getModel('formbuilder/fields')->getCollection();
         $this->_currentFormId = $currentFormId;
         if($this->_currentFormId)
         {
 	        $fieldsCollection = $this->getFieldsCollection($this->_currentFormId);
 	        if(count($fieldsCollection))
 	        {
+
 	            foreach ($fieldsArray as $fieldsArrayItem)
 	            {
 	                foreach ($fieldsCollection as $fieldsItem)
@@ -121,9 +120,6 @@ class Phxsolution_Formbuilder_Model_Fields extends Mage_Core_Model_Abstract
                             $this->removeField( $fieldsItem['fields_index'] );
                         else
                             $this->editField( $fieldsArrayItem,$fieldsItem['fields_index'] );
-                        /*$this->removeField( $fieldsItem['fields_index'] );
-	                    if(!$fieldsArrayItem['is_delete'])
-	                        $this->addField($fieldsArrayItem);*/
 	                }
 	            }
 	        }
@@ -183,7 +179,7 @@ class Phxsolution_Formbuilder_Model_Fields extends Mage_Core_Model_Abstract
                 {
                     $optionsArray = array();
                     $optionsArray = $fieldsArrayItem['values'];
-                    //$getFieldsIndex = $fieldsModel->getFieldsIndex();
+
                     $optionsModel = Mage::helper('formbuilder')->getOptionsModel();
                     $optionsModel->saveOptions($optionsArray,$getFieldsIndex,$this->_isNewField);
                 }

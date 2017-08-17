@@ -57,11 +57,11 @@ class Phxsolution_Formbuilder_Block_Adminhtml_Formbuilder_Grid extends Mage_Admi
           'width'     => '50px',
           'index'     => 'forms_index',
       ));
-      $this->addColumn('title', array(
+      $this->addColumn('form_title', array(
           'header'    => Mage::helper('formbuilder')->__('Title'),
           'align'     =>'left',
           'width'     => '250px',
-          'index'     => 'title',
+          'index'     => 'form_title',
       ));
       $this->addColumn('no_of_fields', array(
           'header'    => Mage::helper('formbuilder')->__('Fields'),          

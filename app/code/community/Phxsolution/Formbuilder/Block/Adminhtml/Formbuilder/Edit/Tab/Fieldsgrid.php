@@ -55,12 +55,6 @@ class Phxsolution_Formbuilder_Block_Adminhtml_Formbuilder_Edit_Tab_Fieldsgrid ex
             'align' => 'left',
             'index' => 'fields_index',
         ));
-        /*$this->addColumn('forms_index', array(
-            'header' => Mage::helper('formbuilder')->__('Form'),
-            'align' => 'left',
-            'index' => 'forms_index',
-            'renderer'  => 'formbuilder/adminhtml_formbuilder_renderer_formtitle'
-        ));*/
         $this->addColumn('title', array(
             'header' => Mage::helper('formbuilder')->__('Title'),
             'width' =>  '250px',

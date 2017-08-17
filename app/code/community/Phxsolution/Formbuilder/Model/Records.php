@@ -34,7 +34,6 @@ class Phxsolution_Formbuilder_Model_Records extends Mage_Core_Model_Abstract
     }
     public function checkFormSubmissionLimit($customer=0,$currentFormId=0)
     {
-        //return "customer=$customer, currentFormId=$currentFormId";
         $collection = array();
         if($customer && $currentFormId)
         {
@@ -49,7 +48,6 @@ class Phxsolution_Formbuilder_Model_Records extends Mage_Core_Model_Abstract
 		$recordsCollection = $recordsModel->getCollection();
     	if($currentFormId)
     		$recordsCollection->addFieldToFilter('forms_index',array('eq'=>$currentFormId));
-    	//$recordsCollection->setOrder('fields_index','asc');
         return $recordsCollection;
     }
 }

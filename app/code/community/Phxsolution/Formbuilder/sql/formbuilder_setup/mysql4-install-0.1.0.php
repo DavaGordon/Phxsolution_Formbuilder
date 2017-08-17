@@ -30,9 +30,7 @@ $installer = $this;
 
 $installer->startSetup();
 
-$installer->run("
-
--- DROP TABLE IF EXISTS {$this->getTable('formbuilder_forms')};
+$installer->run("-- DROP TABLE IF EXISTS {$this->getTable('formbuilder_forms')};
 CREATE TABLE {$this->getTable('formbuilder_forms')} (
  	`forms_index` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
 	`title` VARCHAR(255) NOT NULL,

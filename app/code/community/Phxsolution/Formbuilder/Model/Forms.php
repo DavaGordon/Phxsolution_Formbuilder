@@ -34,8 +34,4 @@ class Phxsolution_Formbuilder_Model_Forms extends Mage_Core_Model_Abstract
         parent::_construct();
         $this->_init('formbuilder/forms');
     }
-    /*public function getSuccessText($currentFormId=0)
-    {
-    	$this->_currentFormId = $currentFormId;
-    }*/
 }

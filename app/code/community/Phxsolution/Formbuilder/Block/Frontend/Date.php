@@ -30,27 +30,20 @@ class Phxsolution_Formbuilder_Block_Frontend_Date extends Mage_Core_Block_Templa
 	protected $_option = array();
 	protected function _prepareLayout()
     {
-        //echo "<h1>test</h1>";
+
     }
     public function useCalendar()
     {
-        //return Mage::getSingleton('catalog/product_option_type_date')->useCalendar();
         return Mage::getStoreConfig('formbuilder_section/custom_options/use_calendar');
     }
     public function getCalendarDateHtml()
     {
         $option = $this->_option;
-        //$value = $this->getProduct()->getPreconfiguredValues()->getData('options/' . $option->getId() . '/date');
 
-        //$require = $this->_option->getIsRequire() ? ' required-entry' : '';
         $require = '';
 
-        /*$yearStart = Mage::getSingleton('catalog/product_option_type_date')->getYearStart();
-        $yearEnd = Mage::getSingleton('catalog/product_option_type_date')->getYearEnd();*/
         $year_range = Mage::getStoreConfig('formbuilder_section/custom_options/year_range');
         list($yearStart,$yearEnd) = explode(',', $year_range);
-        //$yearStart = Mage::getStoreConfig('formbuilder_section/custom_options/year_range');
-        //$yearEnd = Mage::getStoreConfig('formbuilder_section/custom_options/year_range');
 
         $calendar = $this->getLayout()
             ->createBlock('core/html_date')
@@ -61,9 +54,6 @@ class Phxsolution_Formbuilder_Block_Frontend_Date extends Mage_Core_Block_Templa
             ->setFormat(Mage::app()->getLocale()->getDateStrFormat(Mage_Core_Model_Locale::FORMAT_TYPE_SHORT))
             ->setValue($value)
             ->setYearsRange('[' . $yearStart . ', ' . $yearEnd . ']');
-        /*if (!$this->getSkipJsReloadPrice()) {
-            $calendar->setExtraParams('onchange="opConfig.reloadPrice()"');
-        }*/
 
         return $calendar->getHtml();
     }
@@ -87,17 +77,8 @@ class Phxsolution_Formbuilder_Block_Frontend_Date extends Mage_Core_Block_Templa
             ->setName('options[' . $option['fields_index'] . '][' . $name . ']');
 
         $extraParams = 'style="width:auto"';
-        /*if (!$this->getSkipJsReloadPrice()) {
-            $extraParams .= ' onchange="opConfig.reloadPrice()"';
-        }*/
-        $select->setExtraParams($extraParams);
 
-        /*if (is_null($value)) {
-            $value = $this->getProduct()->getPreconfiguredValues()->getData('options/' . $option->getFieldsIndex() . '/' . $name);
-        }
-        if (!is_null($value)) {
-            $select->setValue($value);
-        }*/
+        $select->setExtraParams($extraParams);
 
         return $select;
     }
@@ -116,7 +97,7 @@ class Phxsolution_Formbuilder_Block_Frontend_Date extends Mage_Core_Block_Templa
     public function getDropDownsDateHtml()
     {
         $fieldsSeparator = '&nbsp;';
-        //$fieldsOrder = Mage::getSingleton('catalog/product_option_type_date')->getConfigData('date_fields_order');
+
         $fieldsOrder = Mage::getStoreConfig('formbuilder_section/custom_options/date_fields_order');
         $fieldsOrder = str_replace(',', $fieldsSeparator, $fieldsOrder);
 
@@ -125,8 +106,7 @@ class Phxsolution_Formbuilder_Block_Frontend_Date extends Mage_Core_Block_Templa
 
         $year_range = Mage::getStoreConfig('formbuilder_section/custom_options/year_range');
         list($yearStart,$yearEnd) = explode(',', $year_range);
-        //$yearStart = Mage::getStoreConfig('formbuilder_section/custom_options/year_range');
-        //$yearEnd = Mage::getStoreConfig('formbuilder_section/custom_options/year_range');
+
         $yearsHtml = $this->_getSelectFromToHtml('year', $yearStart, $yearEnd);
 
         $translations = array(
@@ -150,7 +130,7 @@ class Phxsolution_Formbuilder_Block_Frontend_Date extends Mage_Core_Block_Templa
     {
         $this->_option = $currentField;
         $timeFormat = Mage::getStoreConfig('formbuilder_section/custom_options/time_format');
-        //if (Mage::getSingleton('catalog/product_option_type_date')->is24hTimeFormat()) {
+
         if ($timeFormat=='24h')
         {
             $hourStart = 0;

@@ -42,18 +42,7 @@ class Phxsolution_Formbuilder_Block_Adminhtml_Formbuilder_Edit_Tabs extends Mage
           'title'     => Mage::helper('formbuilder')->__('Form Information'),
           'content'   => $this->getLayout()->createBlock('formbuilder/adminhtml_formbuilder_edit_tab_form')->toHtml(),
       ));
-
-      //$fieldsCollection = Mage::helper('formbuilder')->getcurrentFormFieldsCollection();
-      //if(count($fieldsCollection))
-      //{
-        $this->addTab('fieldsgrid_section', array(
-            'label'     => Mage::helper('formbuilder')->__('Fields List'),
-            'title'     => Mage::helper('formbuilder')->__('Fields List'),
-            'url'   => $this->getUrl('*/*/fieldsgrid', array('_current' => true)),
-            'class' => 'ajax',
-        ));
-      //}
-
+      
       $this->addTab('fields_section', array(
           'label'     => Mage::helper('formbuilder')->__('Form Creator'),
           'title'     => Mage::helper('formbuilder')->__('Form Creator'),

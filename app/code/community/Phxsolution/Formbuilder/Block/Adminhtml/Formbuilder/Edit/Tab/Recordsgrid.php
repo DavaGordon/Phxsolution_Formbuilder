@@ -58,10 +58,7 @@ class Phxsolution_Formbuilder_Block_Adminhtml_Formbuilder_Edit_Tab_Recordsgrid e
         $fieldsModel = Mage::helper('formbuilder')->getFieldsModel();
         $prepareFieldTitles = array();
         $prepareFieldTitles = $fieldsModel->prepareFieldTitles($currentFormId);
-        
-        /*echo "<pre>";
-        print_r($prepareFieldTitles);
-        echo "</pre>";*/
+
         if(count($prepareFieldTitles))
         {
             $this->addColumn('records_index', array(

@@ -71,7 +71,7 @@ class Phxsolution_Formbuilder_Block_Adminhtml_Formbuilder_Edit extends Mage_Admi
         {
             $currentFormId = Mage::registry('formbuilder_data')->getFormsIndex();
             Mage::getSingleton('core/session')->setCurrentFormId($currentFormId);
-            return Mage::helper('formbuilder')->__("Edit Form '%s'", $this->htmlEscape(Mage::registry('formbuilder_data')->getTitle()));            
+            return Mage::helper('formbuilder')->__("Edit Form '%s'", $this->htmlEscape(Mage::registry('formbuilder_data')->getTitle()));
         }
         else
         {

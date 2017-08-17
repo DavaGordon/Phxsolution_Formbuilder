@@ -29,7 +29,7 @@
 		<Phxsolution_Formbuilder>
 			<active>true</active>
 			<codePool>community</codePool>
-			<version>0.3.2</version>
+			<version>0.3.3</version>
 		</Phxsolution_Formbuilder>
 	</modules>
 </config>

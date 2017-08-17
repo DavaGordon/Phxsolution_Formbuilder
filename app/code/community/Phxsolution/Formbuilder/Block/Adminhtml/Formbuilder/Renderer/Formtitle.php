@@ -31,7 +31,7 @@ class Phxsolution_Formbuilder_Block_Adminhtml_Formbuilder_Renderer_Formtitle ext
     {
         $formId = intval($row->getData('forms_index'));
         $formsModel = Mage::getModel('formbuilder/forms')->load($formId);
-        $formTitle = $formsModel->getTitle();
+        $formTitle = $formsModel->getFormTitle();
         return $formTitle;
     }
 }

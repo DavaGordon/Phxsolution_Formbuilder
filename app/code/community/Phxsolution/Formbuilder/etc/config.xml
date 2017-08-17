@@ -27,7 +27,7 @@
 <config>
     <modules>
         <Phxsolution_Formbuilder>
-            <version>0.3.2</version>
+            <version>0.3.3</version>
         </Phxsolution_Formbuilder>
     </modules>
     <frontend>
@@ -57,26 +57,7 @@
                 </observers>
             </page_block_html_topmenu_gethtml_before>
         </events>
-        <!-- <translate>
-            <modules>
-                <Phxsolution_Formbuilder>
-                    <files>
-                        <default>Phxsolution_Formbuilder.csv</default>
-                    </files>
-                </Phxsolution_Formbuilder>
-            </modules>
-        </translate> -->
-		<!-- <events>
-           <core_block_abstract_prepare_layout_before>
-               <observers>
-                   <nextbits_jquery_prepare_layout_before>
-                       <class>formbuilder/observer</class>
-                       <method>prepareLayoutBefore</method>
-                   </nextbits_jquery_prepare_layout_before>
-               </observers>
-           </core_block_abstract_prepare_layout_before>
-       </events> -->
-    </frontend>
+     </frontend>
     <admin>
         <routers>
 			<formbuilder>
@@ -112,11 +93,6 @@
                         <sort_order>2</sort_order>
                         <action>adminhtml/system_config/edit/section/formbuilder_section</action>
                     </items3>
-                    <!-- <items4 module="formbuilder">
-                        <title>Form with Results</title>
-                        <sort_order>3</sort_order>
-                        <action>adminhtml/system_config/edit/section/formbuilder_section</action>
-                    </items4> -->
                 </children>
 			</formbuilder>
 		</menu>
@@ -219,11 +195,6 @@
             <formbuilder>
                 <class>Phxsolution_Formbuilder_Block</class>
             </formbuilder>
-            <!-- <adminhtml>
-                <rewrite>
-                    <page_menu>Phxsolution_Formbuilder_Block_Adminhtml_Menu</page_menu>
-                </rewrite>
-            </adminhtml> -->
             <adminhtml>
                 <rewrite>
                     <catalog_product_edit_tab_options_type_text>Phxsolution_Formbuilder_Block_Adminhtml_Formbuilder_Edit_Tab_Options_Type_Text</catalog_product_edit_tab_options_type_text>
@@ -233,14 +204,6 @@
                 </rewrite>
                 
             </adminhtml>
-            <!-- <adminhtml> -->
-                <!-- <rewrite>
-                    <catalog_product_edit_tab_options>Phxsolution_Formbuilder_Block_Adminhtml_Formbuilder_Edit_Tab_Options</catalog_product_edit_tab_options>
-                </rewrite> -->
-                <!-- <rewrite>
-                    <catalog_product_edit_tab_options_option>Phxsolution_Formbuilder_Block_Adminhtml_Formbuilder_Edit_Tab_Options_Option</catalog_product_edit_tab_options_option>
-                </rewrite> -->
-            <!-- </adminhtml> -->
         </blocks>
         <helpers>
             <formbuilder>
@@ -279,7 +242,7 @@
             </form_submission_email>
             <form_submission_email>
                 <email_content_for_admin>&lt;h2&gt;Hello Admin, &lt;/h2&gt;&lt;br&gt;&lt;br&gt;Have a look at the form submission by customer "{{CustomerEmail}}" from the store "{{Storename}}"&lt;br&gt;&lt;br&gt;{{FormData}}</email_content_for_admin>
-            </form_submission_email>
+    </form_submission_email>
             <custom_options>
                 <use_calendar>1</use_calendar>
             </custom_options>

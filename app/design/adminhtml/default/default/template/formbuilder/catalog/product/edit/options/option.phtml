@@ -67,10 +67,7 @@ var productOption = {
             data.id  = this.itemCount;
             data.type = '';
             data.option_id = 0;
-        } else {
-            this.itemCount = data.item_count;
         }
-
         Element.insert(this.div, {'after':this.template.evaluate(data)});
 
         //set selected type
@@ -351,11 +348,12 @@ Validation.addAllThese([
 }]]);
 
 //adding data to templates
-
-<?php foreach ($this->getOptionValues() as $_value): ?>
+<?php if (is_array($this->getOptionValues()) || is_object($this->getOptionValues())): ?>
+<?php foreach ((array) $this->getOptionValues() as $_value): ?>
     productOption.add(<?php echo $_value->toJson() ?>);
     productOptionType.addDataToValues(<?php echo $_value->toJson() ?>);
 <?php endforeach; ?>
+<?php endif; ?>
 
 //bind scope checkboxes
 productOptionScope.bindScopeCheckbox();
@@ -363,34 +361,3 @@ productOptionScope.bindScopeCheckbox();
 </script>
 
 <div><?php if (!$this->isReadonly()):?><input type="hidden" name="affect_product_custom_options" value="1" /><?php endif;?></div>
-
-
-
-<?php
-    //echo "<br/>printing array";
-    /*foreach ($this->getOptionValues() as $_value):
-        echo "<pre>";
-        echo "<br/>".$_value->toJson();
-    endforeach;*/
-    /*$formData = $this->getFormData();
-    echo "getFormData = ".print_r($formData);
-    echo "<br/>printing array";*/
-    /*foreach ($this->getOptionValues() as $_value):
-        echo "<br/>".$_value;
-        echo "<pre>";
-        print_r($_value);
-    endforeach;*/
-?>
-
-<?php
-/*$fieldsCollection  = Mage::getModel('formbuilder/fields')->getCollection();
-if(count($fieldsCollection))
-{
-    foreach ($fieldsCollection as $key => $value)
-    {
-        echo "<br/>key = ".$key;
-        echo "<br/>title = ".$value['title'];
-        echo "<br/>previous_group = ".$value['previous_group'];
-    }
-}*/
-?>

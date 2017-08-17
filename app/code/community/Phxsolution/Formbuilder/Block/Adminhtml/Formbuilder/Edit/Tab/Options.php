@@ -47,14 +47,7 @@ class Phxsolution_Formbuilder_Block_Adminhtml_Formbuilder_Edit_Tab_Options exten
 
         $this->setChild('options_box',
             $this->getLayout()->createBlock('formbuilder/adminhtml_formbuilder_edit_tab_options_option')
-        );        
+        );
     }
-    /*public function getAddButtonHtml()
-    {
-        return $this->getChildHtml('add_button');
-    }
-    public function getOptionsBoxHtml()
-    {
-        return $this->getChildHtml('options_box');
-    }*/
+
 }
